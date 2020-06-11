@@ -1,0 +1,37 @@
+name: 'Run AndroidLint with reviewdog'
+description: 'Run AndroidLint with reviewdog'
+author: 'dvdandroid'
+
+inputs:
+  github_token:
+    description: 'GITHUB_TOKEN'
+    required: true
+
+  lint_xml_file:
+    description: 'Path of Android Lint XML file'
+    required: true
+
+  level:
+    description: 'Report level for reviewdog [info, warning, error]'
+    required: false
+    default: 'error'
+
+  reporter:
+    description: |
+      Reporter of reviewdog command [github-check, github-pr-check, github-pr-review].
+      Default is github-pr-check.
+    required: false
+    default: 'github-check'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.github_token }}
+    - ${{ inputs.lint_xml_file }}
+    - ${{ inputs.level }}
+    - ${{ inputs.reporter }}
+
+branding:
+  icon: 'smartphone'
+  color: 'green'
