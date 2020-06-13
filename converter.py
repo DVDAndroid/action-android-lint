@@ -16,6 +16,10 @@ checkstyle.attrib['version'] = '8.0'
 
 for issue in ET.parse(sys.argv[1]).getroot().iter('issue'):
     file = ET.SubElement(checkstyle, 'file')
+
+    if '.gradle/caches' in issue[0].attrib['file']:
+        continue
+
     file.attrib['name'] = issue[0].attrib['file'].replace(f'{RUNNER_WORKSPACE}/{REPO_NAME}/', '')
 
     error = ET.SubElement(file, 'error')
