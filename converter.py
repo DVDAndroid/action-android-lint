@@ -34,7 +34,10 @@ for issue in ET.parse(sys.argv[1]).getroot().iter('issue'):
     else:
         error.attrib['column'] = str(0)
 
-    error.attrib['severity'] = 'error'
+    if 'severity' in issue.attrib:
+        error.attrib['severity'] = issue.attrib['severity']
+    else:
+        error.attrib['severity'] = 'info' 
 
     issueId = issue.attrib['id']
     message = issue.attrib['message']
