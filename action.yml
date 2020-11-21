@@ -23,6 +23,11 @@ inputs:
     required: false
     default: 'github-check'
 
+  reviewdog_flags:
+    description: 'Additional reviewdog flags'
+    required: false
+    default: ''
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -31,6 +36,7 @@ runs:
     - ${{ inputs.lint_xml_file }}
     - ${{ inputs.level }}
     - ${{ inputs.reporter }}
+    - ${{ inputs.reviewdog_flags }}
 
 branding:
   icon: 'smartphone'

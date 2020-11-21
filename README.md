@@ -1,6 +1,6 @@
 # GitHub Action: Run Android Lint with reviewdog
 
-This action runs [Andriod Lint](https://developer.android.com/studio/write/lint) with
+This action runs [Android Lint](https://developer.android.com/studio/write/lint) with
 [reviewdog](https://github.com/reviewdog/reviewdog).
 
 ## Inputs
@@ -23,6 +23,11 @@ The default is `error`.
 
 Optional. Reporter of reviewdog command [`github-check`, `github-pr-check`,`github-pr-review`].
 The default is `github-check`.
+
+#### `reviewdog_flags`
+
+Optional. Additional flags to be passed to reviewdog cli.
+The default is ``.
 
 ## Example usage
 
