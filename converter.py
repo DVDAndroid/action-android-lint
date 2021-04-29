@@ -10,6 +10,7 @@ if not os.path.isfile(sys.argv[1]):
 
 RUNNER_WORKSPACE = os.environ['RUNNER_WORKSPACE']
 REPO_NAME = os.environ['GITHUB_REPOSITORY'].split('/')[1]
+SEVERITIES_TO_IGNORE = os.environ.get('SEVERITIES_TO_IGNORE', '').split(',')
 
 checkstyle = ET.Element('checkstyle')
 checkstyle.attrib['version'] = '8.0'
@@ -19,6 +20,10 @@ for issue in ET.parse(sys.argv[1]).getroot().iter('issue'):
 
     if '.gradle/caches' in issue[0].attrib['file']:
         continue
+
+    if 'severity' in issue.attrib['severity']:
+        if issue.attrib['severity'] in SEVERITIES_TO_IGNORE:
+            continue
 
     file.attrib['name'] = issue[0].attrib['file'].replace(f'{RUNNER_WORKSPACE}/{REPO_NAME}/', '')
 

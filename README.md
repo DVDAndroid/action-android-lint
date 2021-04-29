@@ -19,6 +19,11 @@ Optional. Report level for reviewdog [`info`,`warning`,`error`].
 It's same as `-level` flag of reviewdog.
 The default is `error`.
 
+### `severities_to_ignore`
+
+Optional. Ignore certain severities of the reported linter errors. Comma separated string, e.g `Information, Warning`. 
+The default is ``.
+
 #### `reporter`
 
 Optional. Reporter of reviewdog command [`github-check`, `github-pr-check`,`github-pr-review`].
@@ -63,6 +68,7 @@ jobs:
         with:
           github_token: ${{ secrets.TOKEN_GITHUB }}
           lint_xml_file: app/build/reports/lint-results.xml
+          severities_to_ignore: "Information, Warning"
 ```
 
 Note: `lint-results.xml` must be available; you need to `gradlew build` your application first
