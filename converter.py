@@ -8,9 +8,12 @@ if len(sys.argv) == 1:
 if not os.path.isfile(sys.argv[1]):
     raise IOError('Invalid file specified')
 
+SEVERITIES_TO_IGNORE = ''
+if os.path.isfile(sys.argv[2]):
+    SEVERITIES_TO_IGNORE = [x.strip() for x in sys.argv[2].split(',')]
+
 RUNNER_WORKSPACE = os.environ['RUNNER_WORKSPACE']
 REPO_NAME = os.environ['GITHUB_REPOSITORY'].split('/')[1]
-SEVERITIES_TO_IGNORE = os.environ.get('SEVERITIES_TO_IGNORE', '').split(',')
 
 checkstyle = ET.Element('checkstyle')
 checkstyle.attrib['version'] = '8.0'
