@@ -13,13 +13,13 @@ jobs:
       - name: Report ignores info and warnings
         uses: ./
         with:
-          github_token: ${{ secrets.TOKEN_GITHUB }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           lint_xml_file: lint-results-sample.xml
           severities_to_ignore: "Information, Warning"
 
       - name: Report ignores info
         uses: ./
         with:
-          github_token: ${{ secrets.TOKEN_GITHUB }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           lint_xml_file: lint-results-sample.xml
           severities_to_ignore: "Information"
