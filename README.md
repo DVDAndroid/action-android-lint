@@ -61,7 +61,7 @@ jobs:
       - name: Run Android Lint
         uses: dvdandroid/action-android-lint@master
         with:
-          github_token: ${{ secrets.TOKEN_GITHUB }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           lint_xml_file: app/build/reports/lint-results.xml
 ```
 
